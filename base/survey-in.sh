@@ -15,7 +15,7 @@ echo "Starting SURVEY IN"
 ${ubx} -e SURVEYIN3,$dur,$acc
 
 #wait until valid 
-while 1 ; 
+while true ; 
 do 
   sleep 3 
   ${ubx} -p NAV-SVIN  | grep "valid 1 active 0" && break 
