@@ -18,6 +18,6 @@ ${ubx} -e SURVEYIN3,$dur,$acc
 while 1 ; 
 do 
   sleep 3 
-  ${ubx} -p NAV-SVIN  | grep valid 1 && break 
+  ${ubx} -p NAV-SVIN  | grep "valid 1 active 0" && break 
 done
 
