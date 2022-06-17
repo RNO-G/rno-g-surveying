@@ -14,10 +14,14 @@ ${ubx} -d NMEA
 echo "Starting SURVEY IN" 
 ${ubx} -e SURVEYIN3,$dur,$acc
 
+echo "Waiting until valid" 
 #wait until valid 
 while true ; 
 do 
   sleep 3 
+  echo -n "." 
   ${ubx} -p NAV-SVIN  | grep "valid 1 active 0" && break 
 done
+
+echo "Done!" 
 
