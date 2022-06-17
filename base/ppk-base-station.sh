@@ -3,6 +3,7 @@
 if [ $# -lt 1 ] 
 then 
   echo "Usage: ./ppk_base_station.sh outfile.rtcm3"
+  exit 1 
 fi
 
 # load the setup 
