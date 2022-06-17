@@ -27,7 +27,7 @@ done
 for enabled in "${enabled_constellations}" ; 
 do 
   echo "Enabling $enabled" 
-  ${ubx} -e $enabled  -w 0> /dev/null
+  ${ubx} -e $enabled  -w 0 > /dev/null
 done 
 
 ${ubx} -e RAWX  > /dev/null
