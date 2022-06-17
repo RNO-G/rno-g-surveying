@@ -9,10 +9,10 @@ dur=${1-60}
 acc=${2-200000} 
 
 
-${ubx} -d NMEA
+${ubx} -d NMEA > /dev/null
 
 echo "Starting SURVEY IN" 
-${ubx} -e SURVEYIN3,$dur,$acc
+${ubx} -e SURVEYIN3,$dur,$acc > /dev/null
 
 echo "Waiting until valid" 
 #wait until valid 

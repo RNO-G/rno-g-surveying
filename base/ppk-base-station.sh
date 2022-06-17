@@ -14,20 +14,20 @@ fulldir=$(dirname $fullpath)
 
 
 
-${ubx} -d NMEA
-${ubx} -e BINARY
+${ubx} -d NMEA > /dev/null
+${ubx} -e BINARY > /dev/null
 
 for disabled in "${disabled_constellations}" ; 
 do 
-  ${ubx} -d $disabled
+  ${ubx} -d $disabled > /dev/null
 done 
  
 for enabled in "${enabled_constellations}" ; 
 do 
-  ${ubx} -e $enabled
+  ${ubx} -e $enabled > /dev/null
 done 
 
-${ubx} -e RAWX 
+${ubx} -e RAWX  > /dev/null
  
 #done setting up GPS, maybe? 
 
