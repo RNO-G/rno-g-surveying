@@ -8,7 +8,7 @@ fulldir=$(dirname $fullpath)
 . ${fulldir}/setup.sh 
 
 
-out=`date Is`.ubx 
+out=`date -Is`.ubx 
 if [ $# -gt 0 ] ; 
 then 
   out=$1 
