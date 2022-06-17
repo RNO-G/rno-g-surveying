@@ -18,15 +18,15 @@ ubx -e BINARY
 
 for disabled in "${disabled_constellations}" ; 
 do 
-  $(ubx) -d $disabled
+  ${ubx} -d $disabled
 done 
  
 for enabled in "${enabled_constellations}" ; 
 do 
-  $(ubx) -e $enabled
+  ${ubx} -e $enabled
 done 
 
-$(ubx) -e RAWX 
+${ubx} -e RAWX 
  
 #done setting up GPS, maybe? 
 

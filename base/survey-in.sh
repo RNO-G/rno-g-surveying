@@ -9,15 +9,15 @@ dur=${1-60}
 acc=${2-200000} 
 
 
-$(ubx) -d NMEA
+${ubx} -d NMEA
 
 echo "Starting SURVEY IN" 
-$(ubx) -e SURVEYIN3,$dur,$acc
+${ubx} -e SURVEYIN3,$dur,$acc
 
 #wait until valid 
 while 1 ; 
 do 
   sleep 3 
-  $(ubx) -p NAV-SVIN  | grep valid 1 && break 
+  ${ubx} -p NAV-SVIN  | grep valid 1 && break 
 done
 
