@@ -1,15 +1,26 @@
 #! /bin/sh 
 
-if [ $# -lt 1 ] 
-then 
-  echo "Usage: ./ppk_base_station.sh outfile.rtcm3"
-  exit 1 
-fi
+#usage: ./ppk_base_station.sh [outfile.ubx = `date -Is`.ubx"] [nsecs] 
 
 # load the setup 
 fullpath=$(readlink -f $0) 
 fulldir=$(dirname $fullpath) 
 . ${fulldir}/setup.sh 
+
+
+out=`date Is`.ubx 
+if [ $# -gt 0 ] ; 
+then 
+  out=$1 
+fi 
+
+opts=""
+if [ $# -gt 1 ]; 
+then
+  echo "Will run for $2 seconds" 
+  opts="-x $2"
+fi 
+
 
 
 
@@ -30,9 +41,14 @@ do
   ${ubx} -e $enabled  -w 0 > /dev/null
 done 
 
+echo "Enabling raw messages" 
 ${ubx} -e RAWX  > /dev/null
- 
-#done setting up GPS, maybe? 
 
-echo "Starting data" 
-str2str -in serial://${device}#ubx -out $1 
+echo "Enabling epheremides output" 
+${ubx} -p CFG-MSG,2,19,20 # every 20 seconds
+
+ 
+
+echo "Starting data taking, writing to $out" 
+gpspipe -R $opts > $out
+
