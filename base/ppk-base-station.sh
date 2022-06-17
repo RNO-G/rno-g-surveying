@@ -1,7 +1,7 @@
 #! /bin/sh 
 
 #usage: ./ppk_base_station.sh [outfile.ubx] [seconds] 
-# Outfile defaults to date, 
+# Outfile defaults to date. Should be a ubx file... Or end in gz to compress
 # Add seconds if you don't want to run forever
 
 # load the setup 
@@ -44,10 +44,10 @@ do
 done 
 
 echo "Enabling raw messages" 
-${ubx} -e RAWX  > /dev/null
+${ubx} -e RAWX -w 0 > /dev/null
 
 echo "Enabling epheremides output" 
-${ubx} -p CFG-MSG,2,19,20 > /dev/null # every 20 seconds
+${ubx} -p CFG-MSG,2,19,20 -w 0 > /dev/null # every 20 seconds
 
 
 echo "Starting data taking, writing to $out" 
