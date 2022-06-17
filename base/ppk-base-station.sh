@@ -1,6 +1,8 @@
 #! /bin/sh 
 
-#usage: ./ppk_base_station.sh [outfile.ubx = `date -Is`.ubx"] [nsecs] 
+#usage: ./ppk_base_station.sh [outfile.ubx] [seconds] 
+# Outfile defaults to date, 
+# Add seconds if you don't want to run forever
 
 # load the setup 
 fullpath=$(readlink -f $0) 
@@ -8,7 +10,7 @@ fulldir=$(dirname $fullpath)
 . ${fulldir}/setup.sh 
 
 
-out=`date -Is`.ubx 
+out=`date -u "+%Y-%m-%d.%H%M%S"`.ubx 
 if [ $# -gt 0 ] ; 
 then 
   out=$1 
@@ -45,10 +47,10 @@ echo "Enabling raw messages"
 ${ubx} -e RAWX  > /dev/null
 
 echo "Enabling epheremides output" 
-${ubx} -p CFG-MSG,2,19,20 # every 20 seconds
+${ubx} -p CFG-MSG,2,19,20 > /dev/null # every 20 seconds
 
- 
 
 echo "Starting data taking, writing to $out" 
 gpspipe -R $opts > $out
 
+echo "done... use convbin to convert to rinex" 
