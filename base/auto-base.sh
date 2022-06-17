@@ -12,7 +12,7 @@ out=`date -u "+%Y/%m/%d/%Y-%m-%d.%H%M%S"`.ubx
 dir= $(dirname ${out})
 f=$(basename ${out}) 
 mkdir -p $dir
-./ppk_base_station.sh $out 3600 
+./ppk-base-station.sh $out 3600 
 gzip $out
 ssh $user@$host "mkdir -p $destbase/$dir"
 rsync -a $out.gz $user@$host:$destbase/$dir && rm $out && rmdir -p $dir
