@@ -12,13 +12,13 @@ acc=${2-200000}
 ${ubx} -d NMEA > /dev/null
 
 echo "Starting SURVEY IN" 
-${ubx} -e SURVEYIN3,$dur,$acc > /dev/null
+${ubx} -e SURVEYIN3,$dur,$acc -w 0 > /dev/null
 
 echo "Waiting until valid" 
 #wait until valid 
 while true ; 
 do 
-  sleep 3 
+  sleep 1 
   echo -n "." 
   ${ubx} -p NAV-SVIN  | grep "valid 1 active 0" && break 
 done
