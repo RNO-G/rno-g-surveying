@@ -13,8 +13,8 @@ fulldir=$(dirname $fullpath)
 
 
 
-ubx -d NMEA
-ubx -e BINARY
+${ubx} -d NMEA
+${ubx} -e BINARY
 
 for disabled in "${disabled_constellations}" ; 
 do 
