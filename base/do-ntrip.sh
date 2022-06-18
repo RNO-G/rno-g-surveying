@@ -27,10 +27,19 @@ then
   cd ..
 fi 
 
+
+
+# check if caster is running
+if pgrep ntripcaster ; 
+then 
+  echo "Caster is running already" 
+else 
 echo "Starting caster" 
 # start the caster 
 cd ntripcaster/src
 ./ntripcaster &> caster.log & 
+echo "Caster pid is $!" 
+
 cd ../.. 
 
 # we need to grab the rtcm3 messages
