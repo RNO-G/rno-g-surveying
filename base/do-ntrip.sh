@@ -34,11 +34,12 @@ if pgrep ntripcaster ;
 then 
   echo "Caster is running already" 
 else 
-echo "Starting caster" 
-# start the caster 
-cd ntripcaster/src
-./ntripcaster &> caster.log & 
-echo "Caster pid is $!" 
+  echo "Starting caster" 
+  # start the caster 
+  cd ntripcaster/src
+  ./ntripcaster &> caster.log & 
+  echo "Caster pid is $!" 
+fi 
 
 cd ../.. 
 
