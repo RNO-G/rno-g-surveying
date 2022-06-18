@@ -35,16 +35,17 @@ then
   echo "Caster is running already" 
 else 
   echo "Starting caster" 
+  cp ntripcaster.conf ntripcaster/src 
   # start the caster 
   cd ntripcaster/src
-  ./ntripcaster &> caster.log & 
+  ./ntripcaster &
   echo "Caster pid is $!" 
 fi 
 
 cd ../.. 
 
 # we need to grab the rtcm3 messages
-gpspipe -R | str2str | ntripserver/ntripserver -M 3 -O 3 -m msf
+gpspipe -R | str2str | ntripserver/ntripserver -M 3 -O 3 -m msf -a localhost -n rno-g -c rno-g
 
 
 
