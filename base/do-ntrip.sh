@@ -13,7 +13,7 @@ cd $dir
 make -C ntripserver
 
 # we need to grab the rtcm3 messages
-gpsipe -R | str2str | ntripserver/ntripserver -f -O 1
+gpsipe -R | str2str | ntripserver/ntripserver -M 3 -O 1
 
 
 
