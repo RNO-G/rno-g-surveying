@@ -40,12 +40,13 @@ else
   cd ntripcaster/src
   ./ntripcaster &
   echo "Caster pid is $!" 
+  sleep 3
 fi 
 
 cd ../.. 
 
 # we need to grab the rtcm3 messages
-gpspipe -R | str2str | ntripserver/ntripserver -M 3 -O 3 -m msf -a localhost -n rno-g -c rno-g
+gpspipe -R | str2str | ntripserver/ntripserver -M 3 -O 3 -m msf -a localhost -n rno-g -c please
 
 
 
