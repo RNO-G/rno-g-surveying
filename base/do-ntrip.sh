@@ -9,11 +9,32 @@ fullpath=$(readlink -f $0)
 dir=$(dirname $fullpath)
 cd $dir 
 
+
 # check to make sure we've compiled ntripserver
+if [ ! -f ntripserver/ntripserver ] 
+then 
 make -C ntripserver
+fi
+
+# check to make sure we have the ntrip caster
+if [ ! -f ntripcaster/src/ntripcaster ] 
+then 
+  git submodule init
+  git submodule sync 
+  cd ntripcaster
+  ./configure
+  make
+  cd ..
+fi 
+
+echo "Starting caster" 
+# start the caster 
+cd ntripcaster/src
+./ntripcaster &> caster.log & 
+cd ../.. 
 
 # we need to grab the rtcm3 messages
-gpspipe -R | str2str | ntripserver/ntripserver -M 3 -O 1 -m msf -n rno-g -c rno-g
+gpspipe -R | str2str | ntripserver/ntripserver -M 3 -O 3 -m msf
 
 
 

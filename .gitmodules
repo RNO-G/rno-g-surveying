@@ -1,0 +1,3 @@
+[submodule "base/ntripcaster"]
+	path = base/ntripcaster
+	url = https://github.com/nunojpg/ntripcaster.git
