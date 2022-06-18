@@ -20,7 +20,7 @@ fi
 if [ ! -f ntripcaster/src/ntripcaster ] 
 then 
   git submodule init
-  git submodule sync 
+  git submodule update 
   cd ntripcaster
   ./configure
   make
