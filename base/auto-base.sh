@@ -17,7 +17,7 @@ mkdir -p $dir
 ./ppk-base-station.sh $out 3600 
 gzip $out
 ssh $user@$host "mkdir -p $destbase/$dir"
-rsync -a $out.gz $user@$host:$destbase/$dir && rm $out && rmdir -p $dir
+rsync -a $out.gz $user@$host:$destbase/$dir && rm $out.gz && rmdir -p $dir
 done 
 
   
