@@ -36,6 +36,7 @@ then
 else 
   echo "Starting caster" 
   cp ntripcaster.conf ntripcaster/src 
+  cp sourcetable.dat ntripcaster/conf
   # start the caster 
   cd ntripcaster/src
   ./ntripcaster &
